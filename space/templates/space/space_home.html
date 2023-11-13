@@ -7,10 +7,12 @@
 </head>
 <body>
   <h1>welcome to spacelog</h1>
+  <a href="{% url 'new' %}">새 글 쓰기</a>
     {% for space in spaces %}
         <h2>{{ space.title }}</h2>
         <p>{{ space.author }}</p>
         <p>{{ space.summary }}</p>
+        <a href="{% url 'detail' space.id %}">게시글 보기</a>
     {% endfor %}
 </body>
 </html>
