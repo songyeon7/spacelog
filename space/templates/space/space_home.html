@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spacelog</title>
+</head>
+<body>
+  <h1>welcome to spacelog</h1>
+    {% for space in spaces %}
+        <h2>{{ space.title }}</h2>
+        <p>{{ space.author }}</p>
+        <p>{{ space.summary }}</p>
+    {% endfor %}
+</body>
+</html>
