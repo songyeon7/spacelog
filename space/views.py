@@ -22,3 +22,20 @@ def create(request):
     new_space.context = request.POST['context']
     new_space.save()
     return redirect('detail', new_space.id)
+
+def edit(request, id):
+    edit_space = Space.objects.get(id= id)
+    return render(request, 'space/space_edit.html', {'space': edit_space})
+
+def update(request, id):
+    update_space = Space.objects.get(id= id)
+    update_space.title = request.POST['title']
+    update_space.writer = request.POST['author']
+    update_space.body = request.POST['context']
+    update_space.save()
+    return redirect('detail', update_space.id)
+
+def delete(request, id):
+    delete_space = Space.objects.get(id= id)
+    delete_space.delete()
+    return redirect('home')

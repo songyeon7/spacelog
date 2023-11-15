@@ -12,5 +12,8 @@
     <p>작성일자: {{ space.create_date }}</p>
     <hr>
     <p>{{ space.context }}</p>
+
+    <a href="{% url 'edit' space.id %}">수정하기</a>
+    <a href="{% url 'delete' space.id %}">삭제하기</a>
 </body>
 </html>
