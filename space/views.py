@@ -30,8 +30,8 @@ def edit(request, id):
 def update(request, id):
     update_space = Space.objects.get(id= id)
     update_space.title = request.POST['title']
-    update_space.writer = request.POST['author']
-    update_space.body = request.POST['context']
+    update_space.author = request.POST['author']
+    update_space.context = request.POST['context']
     update_space.save()
     return redirect('detail', update_space.id)
 

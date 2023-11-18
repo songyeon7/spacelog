@@ -15,5 +15,8 @@
 
     <a href="{% url 'edit' space.id %}">수정하기</a>
     <a href="{% url 'delete' space.id %}">삭제하기</a>
+
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
