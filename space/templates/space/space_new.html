@@ -7,16 +7,20 @@
     <title>New</title>
 </head>
 <body>
-    <form action="{% url 'create' %}" method="POST">
-      {% csrf_token %}
-        <label for="title">제목</label>
-        <input type="text" id="title" name="title">
+    <form action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="id_title">제목</label>
+        {{ form.title }}
         <br>
-        <label for="author">작성자</label>
-        <input type="text" id="author" name="author">
+        <label for="id_author">작성자</label>
+        {{ form.author }}
         <br>
-        <label for="context">내용</label>
-        <textarea name="context" id="context" cols="30" rows="10"></textarea>
+        <label for="id_context">내용</label>
+        {{ form.context }}
+        <br>
+        <label for="id_image">이미지 업로드</label>
+        {{ form.image }}
+        <br>
         <button type="submit">제출</button>
     </form>
 </body>

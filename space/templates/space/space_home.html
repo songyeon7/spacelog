@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spacelog</title>
+  <!-- head 부분 생략 -->
 </head>
 <body>
   <h1>welcome to spacelog</h1>
@@ -11,6 +9,9 @@
     {% for space in spaces %}
         <h2>{{ space.title }}</h2>
         <p>{{ space.author }}</p>
+        {% if space.image %}
+            <img src="{{ space.image.url }}" alt="{{ space.title }} 이미지">
+        {% endif %}
         <p>{{ space.summary }}</p>
         <a href="{% url 'detail' space.id %}">게시글 보기</a>
     {% endfor %}

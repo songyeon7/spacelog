@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="{% url 'update' space.id %}" method="POST">
+    <form action="{% url 'update' space.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="title">제목</label>
         <input type="text" name="title" id="title" value="{{space.title}}">
@@ -15,6 +15,11 @@
         <br>
         <label for="context">내용</label>
         <textarea name="context" id="context" cols="30" rows="10">{{space.context}}</textarea>
+        <br>
+        <!-- 이미지 업로드 필드 추가 -->
+        <label for="image">이미지 업로드</label>
+        <input type="file" id="image" name="image">
+        <br>
         <button type="submit">제출</button>
     </form>
 </body>

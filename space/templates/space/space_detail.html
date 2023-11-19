@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail</title>
+    <!-- head 부분 생략 -->
 </head>
 <body>
     <h1>제목: {{ space.title }}</h1>
     <p>작성자: {{ space.author }}</p>
     <p>작성일자: {{ space.create_date }}</p>
-    <hr>
+    <br>
+    {% if space.image %}
+        <img src="{{ space.image.url }}" alt="{{ space.title }} 이미지">
+    {% endif %}
     <p>{{ space.context }}</p>
 
     <a href="{% url 'edit' space.id %}">수정하기</a>
