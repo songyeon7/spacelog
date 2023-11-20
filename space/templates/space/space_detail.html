@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'space/base.html' %}
+
+{% block content %}
 <head>
     <!-- head 부분 생략 -->
 </head>
@@ -16,7 +17,7 @@
     <a href="{% url 'edit' space.id %}">수정하기</a>
     <a href="{% url 'delete' space.id %}">삭제하기</a>
 
-    {% block content %}
-    {% endblock %}
+
 </body>
+{% endblock %}
 </html>

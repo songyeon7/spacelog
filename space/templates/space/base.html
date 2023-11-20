@@ -1,32 +1,25 @@
-<!-- base.html -->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>SpaceLog</title>
-    <!-- 여기에 필요한 CSS 파일들을 추가 -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <!-- 이렇게 추가하는 거야. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Spacelog</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
 
-<!-- 네비게이션 바 -->
-<nav>
-    <ul>
-        <li><a href="{% url 'space_home' %}">Home</a></li>
-        <!-- 다른 메뉴 항목들도 필요하다면 추가해 -->
-        <li><a href="{% url 'other_page' %}">Other Page</a></li>
-    </ul>
-</nav>
-
-<!-- 여기서 다른 페이지에서 확장할 내용을 넣을 공간을 만들어줘 -->
-{% block content %}
-{% endblock %}
-
-<!-- 이건 필요하면 footer를 추가하는 부분 -->
-<footer>
-    <!-- Footer 내용 -->
-</footer>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    {% block content %}
+    {% endblock %}
 
 </body>
 </html>

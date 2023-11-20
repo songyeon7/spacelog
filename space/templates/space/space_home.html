@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'space/base.html' %}
+
+{% block content %}
 <head>
   <style>
     /* 스타일 부분 */
@@ -28,9 +29,7 @@
 </head>
 <body>
 
-{% extends 'space/base.html' %}
 
-{% block content %}
   <h1>welcome to spacelog</h1>
   <a href="{% url 'new' %}">새 글 쓰기</a>
     {% for space in spaces %}

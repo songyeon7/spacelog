@@ -55,7 +55,7 @@ ROOT_URLCONF = 'spacelog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['spacelog/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
