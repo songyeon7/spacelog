@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- head 부분 생략 -->
+  <style>
+    /* 스타일 부분 */
+    .post {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      overflow: hidden;
+    }
+
+    .post img {
+      width: 100%;
+      height: auto;
+    }
+
+    .post h2 {
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    .post p {
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  </style>
 </head>
 <body>
+
+{% extends 'space/base.html' %}
+
+{% block content %}
   <h1>welcome to spacelog</h1>
   <a href="{% url 'new' %}">새 글 쓰기</a>
     {% for space in spaces %}
-        <h2>{{ space.title }}</h2>
-        <p>{{ space.author }}</p>
+      <div class="post">
         {% if space.image %}
-            <img src="{{ space.image.url }}" alt="{{ space.title }} 이미지">
+          <img src="{{ space.image.url }}" alt="{{ space.title }} 이미지"style="width: 10%; height: 10%;">
         {% endif %}
-        <p>{{ space.summary }}</p>
-        <a href="{% url 'detail' space.id %}">게시글 보기</a>
+        <h2>{{ space.title }}</h2>
+        <a href="{% url 'detail' space.id %}">{{ space.author }}</a>
+      </div>
     {% endfor %}
+{% endblock %}
 </body>
 </html>

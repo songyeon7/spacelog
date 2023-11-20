@@ -1,0 +1,32 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SpaceLog</title>
+    <!-- 여기에 필요한 CSS 파일들을 추가 -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- 이렇게 추가하는 거야. -->
+</head>
+<body>
+
+<!-- 네비게이션 바 -->
+<nav>
+    <ul>
+        <li><a href="{% url 'space_home' %}">Home</a></li>
+        <!-- 다른 메뉴 항목들도 필요하다면 추가해 -->
+        <li><a href="{% url 'other_page' %}">Other Page</a></li>
+    </ul>
+</nav>
+
+<!-- 여기서 다른 페이지에서 확장할 내용을 넣을 공간을 만들어줘 -->
+{% block content %}
+{% endblock %}
+
+<!-- 이건 필요하면 footer를 추가하는 부분 -->
+<footer>
+    <!-- Footer 내용 -->
+</footer>
+
+</body>
+</html>
