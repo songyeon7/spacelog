@@ -1,0 +1,18 @@
+<!-- category_create.html -->
+
+{% extends 'space/base.html' %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Create Category</title>
+</head>
+<body>
+    <h1>Create Category</h1>
+    <form action="{% url 'category_create' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+    </form>
+</body>
+{% endblock %}

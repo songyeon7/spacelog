@@ -2,6 +2,19 @@ from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from .models import Space
 from .forms import SpaceForm
+from .models import Category
+from .forms import CategoryForm
+
+def category_create(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # 새 카테고리가 생성된 후 이동할 URL
+    else:
+        form = CategoryForm()
+    return render(request, 'space/category_create.html', {'form': form})
+
 
 # Create your views here.
 def home(request):
@@ -22,7 +35,8 @@ def new(request):
             return redirect('home')
     else:
         form = SpaceForm()
-    return render(request, 'space/space_new.html', {'form': form})
+    categories = Category.objects.all()  # Fetch all categories
+    return render(request, 'space/space_new.html', {'form': form, 'categories': categories})
 
 
 def create(request):
@@ -37,8 +51,9 @@ def create(request):
 
 
 def edit(request, id):
-    edit_space = Space.objects.get(id= id)
-    return render(request, 'space/space_edit.html', {'space': edit_space})
+    edit_space = Space.objects.get(id=id)
+    categories = Category.objects.all()  # Fetch all categories
+    return render(request, 'space/space_edit.html', {'space': edit_space, 'categories': categories})
 
 def update(request, id):
     if request.method == 'POST':

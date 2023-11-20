@@ -21,7 +21,12 @@
         <br>
         <label for="id_image">이미지 업로드</label>
         {{ form.image }}
-        <br>
+        <label for="id_category">카테고리</label>
+        <select name="category" id="id_category">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
         <button type="submit">제출</button>
     </form>
 </body>
