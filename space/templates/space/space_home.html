@@ -41,13 +41,25 @@
       text-decoration: none;
       color: #333;
     }
+
+    .buttons-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .buttons-container a {
+      margin-left: 10px;
+    }
   </style>
 </head>
 <body>
 
   <h1>welcome to spacelog</h1>
-  <a href="{% url 'new' %}">새 글 쓰기</a>
-  <a href="{% url 'category_create' %}">새 카테고리 만들기</a>
+  <div class="buttons-container">
+    <a href="{% url 'new' %}" class="btn btn-primary">새 글 쓰기</a>
+    <a href="{% url 'category_create' %}" class="btn btn-primary">새 카테고리 만들기</a>
+  </div>
 
   <div class="posts-container">
     {% for space in spaces %}
