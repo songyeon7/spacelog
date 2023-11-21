@@ -63,6 +63,35 @@
   .post a:hover {
     color: #555; /* Change link color on hover if needed */
   }
+  /* 페이징 버튼 스타일 */
+    .pagination {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .step-links a {
+      padding: 8px 12px;
+      margin: 0 4px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .step-links a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .current {
+      padding: 8px 12px;
+      margin: 0 4px;
+      background-color: #007bff;
+      color: #fff;
+      border: 1px solid #007bff;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -76,15 +105,32 @@
   </h1>
 
   <div class="posts-container">
-    {% for space in spaces %}
-      <a href="{% url 'detail' space.id %}" class="post"> <!-- Wrap the entire post in an anchor tag -->
-        {% if space.image %}
-          <img src="{{ space.image.url }}" alt="{{ space.title }} 이미지">
-        {% endif %}
-        <h2>{{ space.title }}</h2>
-        <p>{{ space.author }}</p>
-      </a>
-    {% endfor %}
+  {% for space in page_obj %}
+    <a href="{% url 'detail' space.id %}" class="post">
+      {% if space.image %}
+        <img src="{{ space.image.url }}" alt="{{ space.title }} 이미지">
+      {% endif %}
+      <h2>{{ space.title }}</h2>
+      <p>{{ space.author }}</p>
+    </a>
+  {% endfor %}
+</div>
+  <div class="pagination">
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+      <a href="?page=1">&laquo; 처음</a>
+      <a href="?page={{ page_obj.previous_page_number }}">이전</a>
+    {% endif %}
+
+    <span class="current">
+      페이지 {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+    </span>
+
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">다음</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}">끝 &raquo;</a>
+    {% endif %}
+  </span>
 </div>
 {% endblock %}
 </body>

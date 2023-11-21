@@ -4,6 +4,7 @@ from .models import Space
 from .forms import SpaceForm
 from .models import Category
 from .forms import CategoryForm
+from django.core.paginator import Paginator
 
 def category_create(request):
     if request.method == 'POST':
@@ -18,8 +19,14 @@ def category_create(request):
 
 # Create your views here.
 def home(request):
-    spaces = Space.objects.all()
-    return render(request, 'space/space_home.html', { 'spaces': spaces })
+    spaces_list = Space.objects.all()
+    paginator = Paginator(spaces_list, 10)  # 페이지당 10개의 공간을 보여줍니다.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'space/space_home.html', {'page_obj': page_obj})
+
 
 def detail(request, id):
     space = Space.objects.get(id = id)
