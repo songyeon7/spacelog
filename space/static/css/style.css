@@ -1,0 +1,60 @@
+/* In static/css/style.css */
+
+/* Styles for the sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.category-item {
+    margin-top: 10px;
+}
+
+/* Styles for posts */
+.posts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 4 columns with a minimum width of 200px */
+    gap: 20px; /* Gap between grid items */
+}
+
+.post {
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.post img {
+    width: 100%;
+    height: 150px; /* Fixed height for the images */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
+
+.post h2 {
+    font-size: 16px;
+    margin-top: 10px;
+    flex-grow: 1; /* Allow the title to expand within its container */
+}
+
+.post a {
+    font-size: 14px;
+    margin-top: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Styles for buttons */
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.buttons-container a {
+    margin-left: 10px;
+}
