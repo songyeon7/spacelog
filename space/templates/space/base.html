@@ -14,7 +14,9 @@
             <div class="category-menu">
                 <ul class="list-unstyled">
                     {% for category in categories %}
-                        <li class="category-item"><a href="#">{{ category.name }}</a></li>
+                        <li class="category-item">
+                            <a href="{% url 'category_posts' category.id %}">{{ category.name }}</a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>

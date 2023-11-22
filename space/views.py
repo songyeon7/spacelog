@@ -14,10 +14,9 @@ def category_create(request):
     return render(request, 'space/category_create.html', {'form': form})
 
 def category_posts(request, category_id):
-    category = get_object_or_404(Category, pk=category_id)
+    category = Category.objects.get(pk=category_id)
     posts = Post.objects.filter(category=category)
     return render(request, 'space/category_posts.html', {'category': category, 'posts': posts})
-
 
 # Create your views here.
 def home(request):

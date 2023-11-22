@@ -19,3 +19,11 @@ class Space(models.Model):
 
     def summary(self):
         return self.context[:30]
+
+class Post(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
