@@ -8,6 +8,7 @@
     <h1>제목: {{ space.title }}</h1>
     <p>작성자: {{ space.author }}</p>
     <p>작성일자: {{ space.create_date }}</p>
+    <p>카테고리: {{space.category }}</p>
     <br>
     {% if space.image %}
         <img src="{{ space.image.url }}" alt="{{ space.title }} 이미지"style="width: 10%; height: 10%;">

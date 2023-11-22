@@ -103,7 +103,7 @@
 </head>
 <body>
 
-  <h1 style="color: #fff;">
+   <h1 style="color: #fff;">
     Welcome To Spacelog
     <div class="buttons-container">
       <a href="{% url 'new' %}" class="btn btn-primary">새 글 쓰기</a>
@@ -111,9 +111,9 @@
     </div>
   </h1>
 
- <div class="posts-container">
+  <div class="posts-container">
     <h2>{{ category.name }} Posts</h2>
-    {% for post in posts %}
+    {% for post in category.post_set.all %}
       <div class="post">
         {% if post.image %}
           <img src="{{ post.image.url }}" alt="{{ post.title }} 이미지">
@@ -122,10 +122,10 @@
         <p>{{ post.author }}</p>
       </div>
     {% empty %}
+      <p>No posts found for this category.</p>
     {% endfor %}
   </div>
-</div>
-</div>
+
   <div class="pagination">
   <span class="step-links">
     {% if page_obj.has_previous %}

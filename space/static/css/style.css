@@ -1,5 +1,8 @@
 /* In static/css/style.css */
 
+.sidebar {
+    background-color: #000052 !important; /* !important를 추가하여 우선순위를 높임 */
+}
 /* Styles for the sidebar */
 .sidebar {
     display: flex;
@@ -7,6 +10,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background-color: #000052; /* 어두운 색으로 변경 */
 }
 
 .category-item {
