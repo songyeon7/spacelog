@@ -1,9 +1,6 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
-from .models import Space
-from .forms import SpaceForm
-from .models import Category
-from .forms import CategoryForm
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import SpaceForm, CategoryForm
+from .models import Category, Post, Space
 from django.core.paginator import Paginator
 
 def category_create(request):
@@ -16,16 +13,22 @@ def category_create(request):
         form = CategoryForm()
     return render(request, 'space/category_create.html', {'form': form})
 
+def category_posts(request, category_id):
+    category = get_object_or_404(Category, pk=category_id)
+    posts = Post.objects.filter(category=category)
+    return render(request, 'space/category_posts.html', {'category': category, 'posts': posts})
+
 
 # Create your views here.
 def home(request):
     spaces_list = Space.objects.all()
-    paginator = Paginator(spaces_list, 10)  # 페이지당 10개의 공간을 보여줍니다.
-
+    paginator = Paginator(spaces_list, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'space/space_home.html', {'page_obj': page_obj})
+    categories = Category.objects.all()  # 카테고리 목록 가져오기
+
+    return render(request, 'space/space_home.html', {'page_obj': page_obj, 'categories': categories})
 
 
 def detail(request, id):
