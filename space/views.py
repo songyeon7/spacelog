@@ -10,9 +10,15 @@ def detail(request, id):
 
 def category_posts(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
-    posts = Space.objects.filter(category=category)
-    categories = Category.objects.all()
-    return render(request, 'space/category_posts.html', {'category': category, 'posts': posts, 'categories': categories})
+    posts_list = Space.objects.filter(category=category)
+    paginator = Paginator(posts_list, 10)  # 페이지당 10개의 항목으로 Paginator 객체 생성
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    categories = Category.objects.all()  # 카테고리 목록 가져오기
+
+    return render(request, 'space/category_posts.html', {'category': category, 'posts': page_obj, 'categories': categories})
 
 def category_create(request):
     if request.method == 'POST':
