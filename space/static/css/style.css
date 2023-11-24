@@ -1,4 +1,13 @@
 /* In static/css/style.css */
+* {
+    font-family: 'HakgyoansimWoojuR';
+}
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 
 .sidebar {
     background-color: #000052 !important; /* !important를 추가하여 우선순위를 높임 */

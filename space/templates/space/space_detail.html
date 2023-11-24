@@ -3,22 +3,74 @@
 {% block content %}
 <head>
     <!-- head 부분 생략 -->
+    <style>
+       /* space_detail.html을 위한 스타일 */
+.post-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.post-info {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.post-info form {
+    margin-top: 10px;
+}
+
+.post-content {
+    width: 60%;
+}
+
+.image-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.image-content img {
+    width: 40%; /* 조정 가능 */
+    height: auto;
+    margin-right: 20px;
+}
+
+.image-content p {
+    width: 60%; /* 조정 가능 */
+}
+
+    </style>
 </head>
 <body>
-    <h1>제목: {{ space.title }}</h1>
-    <p>작성자: {{ space.author }}</p>
-    <p>작성일자: {{ space.create_date }}</p>
-    <p>카테고리: {{space.category }}</p>
-    <br>
-    {% if space.image %}
-        <img src="{{ space.image.url }}" alt="{{ space.title }} 이미지"style="width: 10%; height: 10%;">
-    {% endif %}
-    <p>{{ space.context }}</p>
+    <div class="post-details">
+        <div class="post-info">
+            <h1>{{ space.title }}</h1>
+            <p class="author">작성자: {{ space.author }}</p>
+            <p class="create-date">작성일자: {{ space.create_date }}</p>
+            <p class="category">카테고리: {{ space.category }}</p>
 
-    <a href="{% url 'edit' space.id %}">수정하기</a>
-    <a href="{% url 'delete' space.id %}">삭제하기</a>
+            <form action="{% url 'edit' space.id %}">
+                <button class="btn btn-primary" type="submit">수정하기</button>
+            </form>
 
+            <form action="{% url 'delete' space.id %}">
+                <button class="btn btn-primary" type="submit">삭제하기</button>
+            </form>
+        </div>
 
+        <div class="post-content">
+            {% if space.image %}
+                <div class="image-content">
+                    <img src="{{ space.image.url }}" alt="{{ space.title }} 이미지">
+                    <p>{{ space.context }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 </body>
 {% endblock %}
 </html>
