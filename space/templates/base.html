@@ -18,6 +18,9 @@
                 {% else %}
                     <a class="buttons-container2" href="{% url 'common:login' %}" role="button" style="font-size: 18px;color:#fff; padding: 10px 20px; border:1px solid #fff;">로그인</a>
                 {% endif %}
+                {% if not user.is_authenticated %}
+                    <a class="buttons-container2" href="{% url 'common:signup' %}" style="font-size: 18px;color:#fff; padding: 10px 20px; border:1px solid #fff;">회원가입</a>
+                {% endif %}
             </div>
 
             <div class="category-menu mt-5">

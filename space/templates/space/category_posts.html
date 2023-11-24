@@ -3,12 +3,13 @@
 {% block content %}
 <head>
   <style>
-  /* 전체적인 배경 설정 */
+    /* 전체적인 배경 설정 */
     body {
       background-color: #0a0a23; /* 우주적인 딥 블루 */
       color: #fff; /* 전체적인 글자 색상 */
       font-family: 'Arial', sans-serif; /* 폰트 설정 */
     }
+
     /* 스타일 부분 */
     h1 {
       margin-top: 0; /* Remove margin */
@@ -58,18 +59,8 @@
     .buttons-container a {
       margin-left: 10px;
     }
-    .post a {
-    font-size: 14px;
-    margin-top: 5px;
-    text-decoration: none; /* Remove underline */
-    color: #333; /* Change link color */
-    display: inline-block; /* Ensures padding and margin work correctly */
-  }
 
-  .post a:hover {
-    color: #555; /* Change link color on hover if needed */
-  }
-  /* 페이징 버튼 스타일 */
+    /* 페이징 버튼 스타일 */
     .pagination {
       margin-top: 20px;
       display: flex;
@@ -99,12 +90,31 @@
       border: 1px solid #007bff;
       border-radius: 4px;
     }
+
+    /* 추가된 부분 */
+    .buttons-container a.btn {
+      background-color: #0d6efd;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .buttons-container a.btn:hover {
+      background-color: #085ED7;
+    }
   </style>
 </head>
 <body>
 
-   <h1 style="color: #fff;">
-    {{ category.name }} Posts
+  <h1 style="color: #fff;">
+    {% if category %}
+      {{ category.name }} Posts
+    {% else %}
+      Welcome To Spacelog
+    {% endif %}
     <div class="buttons-container">
       <a href="{% url 'new' %}" class="btn btn-primary">새 글 쓰기</a>
       <a href="{% url 'category_create' %}" class="btn btn-primary">새 카테고리 만들기</a>
@@ -113,15 +123,15 @@
 
   <div class="posts-container">
     {% for post in posts %}
-        <div class="post">
-            {% if post.image %}
-                <img src="{{ post.image.url }}" alt="{{ post.title }} 이미지">
-            {% endif %}
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.author }}</p>
-        </div>
+      <a href="{% url 'detail' post.id %}" class="post">
+        {% if post.image %}
+          <img src="{{ post.image.url }}" alt="{{ post.title }} 이미지">
+        {% endif %}
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.author }}</p>
+      </a>
     {% empty %}
-        <p>No posts found for this category.</p>
+      <p>No posts found for this category.</p>
     {% endfor %}
   </div>
 
@@ -142,6 +152,6 @@
       {% endif %}
     </span>
   </div>
-{% endblock %}
 </body>
+{% endblock %}
 </html>
