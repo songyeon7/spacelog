@@ -3,6 +3,17 @@ from .forms import SpaceForm, CategoryForm
 from .models import Category, Post, Space
 from django.core.paginator import Paginator
 
+def detail(request, id):
+    space = get_object_or_404(Space, pk=id)
+    categories = Category.objects.all()  # 카테고리 목록 가져오기
+    return render(request, 'space/space_detail.html', {'space': space, 'categories': categories})
+
+def category_posts(request, category_id):
+    category = get_object_or_404(Category, pk=category_id)
+    posts = Post.objects.filter(category=category)
+    categories = Category.objects.all()
+    return render(request, 'space/category_posts.html', {'category': category, 'posts': posts, 'categories': categories})
+
 def category_create(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -11,12 +22,8 @@ def category_create(request):
             return redirect('home')  # 새 카테고리가 생성된 후 이동할 URL
     else:
         form = CategoryForm()
-    return render(request, 'space/category_create.html', {'form': form})
-
-def category_posts(request, category_id):
-    category = Category.objects.get(pk=category_id)
-    posts = Post.objects.filter(category=category)
-    return render(request, 'space/category_posts.html', {'category': category, 'posts': posts})
+    categories = Category.objects.all()  # 카테고리 목록 가져오기
+    return render(request, 'space/category_create.html', {'form': form, 'categories': categories})
 
 # Create your views here.
 def home(request):
@@ -28,12 +35,6 @@ def home(request):
     categories = Category.objects.all()  # 카테고리 목록 가져오기
 
     return render(request, 'space/space_home.html', {'page_obj': page_obj, 'categories': categories})
-
-
-def detail(request, id):
-    space = Space.objects.get(id = id)
-    space = get_object_or_404(Space, pk = id)
-    return render(request, 'space/space_detail.html', { 'space': space })
 
 
 def new(request):

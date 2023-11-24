@@ -4,71 +4,95 @@
 <head>
     <!-- head 부분 생략 -->
     <style>
-       /* space_detail.html을 위한 스타일 */
-.post-details {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
+        /* space_detail.html을 위한 스타일 */
+        .post-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-.post-info {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
+        .post-header {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+        }
 
-.post-info form {
-    margin-top: 10px;
-}
+        .post-header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-overflow:nowrapp;
+        }
 
-.post-content {
-    width: 60%;
-}
+        .post-header p {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
 
-.image-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-}
+        .edit-delete-buttons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            width: 100%;
+        }
 
-.image-content img {
-    width: 40%; /* 조정 가능 */
-    height: auto;
-    margin-right: 20px;
-}
+        .edit-delete-buttons form {
+            margin-left: 10px;
+        }
 
-.image-content p {
-    width: 60%; /* 조정 가능 */
-}
+        .post-body {
+            display: flex;
+            width: 100%;
+        }
 
+        .image-content {
+            width: 40%;
+            height: auto;
+        }
+
+        .image-content img {
+            width: 100%;
+            height: auto;
+        }
+
+        .text-content {
+            width: 50%;
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="post-details">
-        <div class="post-info">
+        <div class="post-header">
             <h1>{{ space.title }}</h1>
-            <p class="author">작성자: {{ space.author }}</p>
-            <p class="create-date">작성일자: {{ space.create_date }}</p>
-            <p class="category">카테고리: {{ space.category }}</p>
+            <div class="edit-delete-buttons">
+                <form action="{% url 'edit' space.id %}">
+                    <button class="btn btn-primary" type="submit">수정하기</button>
+                </form>
 
-            <form action="{% url 'edit' space.id %}">
-                <button class="btn btn-primary" type="submit">수정하기</button>
-            </form>
-
-            <form action="{% url 'delete' space.id %}">
-                <button class="btn btn-primary" type="submit">삭제하기</button>
-            </form>
+                <form action="{% url 'delete' space.id %}">
+                    <button class="btn btn-primary" type="submit">삭제하기</button>
+                </form>
+            </div>
         </div>
-
-        <div class="post-content">
-            {% if space.image %}
-                <div class="image-content">
+        <div class="post-header">
+            <p class="author">{{ space.author }}</p>
+            <p class="create-date">{{ space.create_date }}</p>
+            </div>
+        <div class="post-header">
+            <p></p>
+            <p class="category">카테고리: {{ space.category }}</p>
+</div>
+        <div class="post-body">
+            <div class="image-content">
+                {% if space.image %}
                     <img src="{{ space.image.url }}" alt="{{ space.title }} 이미지">
-                    <p>{{ space.context }}</p>
-                </div>
-            {% endif %}
+                {% endif %}
+            </div>
+            <div class="text-content">
+                <p>{{ space.context }}</p>
+            </div>
         </div>
     </div>
 </body>
