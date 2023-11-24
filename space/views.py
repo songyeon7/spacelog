@@ -10,7 +10,7 @@ def detail(request, id):
 
 def category_posts(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
-    posts = Post.objects.filter(category=category)
+    posts = Space.objects.filter(category=category)
     categories = Category.objects.all()
     return render(request, 'space/category_posts.html', {'category': category, 'posts': posts, 'categories': categories})
 
