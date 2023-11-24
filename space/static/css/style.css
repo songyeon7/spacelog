@@ -123,7 +123,7 @@
         }
 
         .buttons-container a:hover {
-            color: #007bff; /* Change button text color on hover */
+            color: #0A0A23; /* Change button text color on hover */
         }
 
         /* 페이징 버튼 스타일 */
@@ -151,8 +151,8 @@
         .current {
             padding: 8px 12px;
             margin: 0 4px;
-            background-color: #007bff;
+            background-color: #0A0A23;
             color: #fff;
-            border: 1px solid #007bff;
+            border: 1px solid #fff;
             border-radius: 4px;
         }
